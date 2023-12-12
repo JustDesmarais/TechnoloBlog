@@ -8,12 +8,12 @@ const userData = [
   },
   {
     username: 'bloggerGirl6',
-    email: 'sample@tryit.com',
+    email: 'AnuEmail@server.com',
     password: 'password123',
   },
   {
     username: 'AnotherUser',
-    email: 'sample@tryit.com',
+    email: 'sizzle@realreel.com',
     password: 'password123',
   },
 ];

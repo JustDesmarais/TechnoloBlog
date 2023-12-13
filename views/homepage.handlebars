@@ -1,0 +1,14 @@
+
+{{#each blogPostData}}
+<div class="postcard">
+    <a href="/posts/{{this.id}}">
+        <div class="cardheader">
+            <h2>{{this.title}}</h2>
+            <p>{{this.created_at}}</p>
+        </div>
+    </a>
+    <div class="cardbody">
+        <p>{{this.content}}</p>
+    </div>
+</div>
+{{/each}}

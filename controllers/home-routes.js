@@ -48,6 +48,7 @@ router.get('/post/:id', async (req, res) => {
     }
 })
 
+// dashboard to view past posts of the user
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
@@ -64,9 +65,9 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
-
+// call to render the login page
 router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
+    // If the user is already logged in, redirect the request to the user's dashboard
     if (req.session.loggeIn) {
       res.redirect('/dashboard');
       return;
@@ -74,5 +75,17 @@ router.get('/login', (req, res) => {
   
     res.render('login');
   });
+
+// call to render sign-up page
+router.get('/signup', (req, res) => {
+    // If the user is already logged in, redirect the request to the user's dashboard
+    if (req.session.loggeIn) {
+      res.redirect('/dashboard');
+      return;
+    }
+  
+    res.render('signup');
+  });
+
 
 module.exports = router;

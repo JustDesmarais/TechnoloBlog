@@ -100,3 +100,17 @@
 .new-user {
     text-align: center;
 }
+
+#new-button {
+  display: flex;
+  justify-content: center;
+  margin: 20px, auto;
+}
+
+#new-post-text {
+  height: 100px;
+}
+
+#comment-box {
+  display: none;
+}

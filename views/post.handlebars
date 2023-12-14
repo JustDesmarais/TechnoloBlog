@@ -1,0 +1,47 @@
+
+<div class="postcard">
+    <div class="cardheader">
+        <h2>{{title}}</h2>
+        <p>{{user.username}} posted on {{createdAt}}</p>
+    </div>
+    <div class="cardbody">
+        <p>{{content}}</p>
+    </div>
+</div>
+
+{{#each blogComments}}
+<div class="postcard" data-id="{{this.id}}">
+    <div class="cardheader">
+        <p>{{this.user.username}} commented on {{this.createdAt}}</p>
+        {{#if sessionUser}}
+        <span><button style="font-size:24px">Button <i class="fa fa-trash-o"></i></button></span>
+        {{/if}}
+    </div>
+    <div class="cardbody">
+        <p>{{this.content}}</p>
+    </div>
+</div>
+{{/each}}
+
+
+{{#if loggedIn}}
+<div class="postcard" id="comment-box">
+    <div class="cardbody form-group">
+        <label for="comment-input">Your Comment:</label>
+        <input class="form-input" type="text" id="commnet-text" />
+    </div>
+</div>
+
+<div id="new-button">
+    <button class="btn btn-primary">+ Add Comment</button>
+</div>
+<div id="submit-button">
+    <button class="btn btn-Primary"></button>
+</div>
+{{else}}
+<div id="login-button">
+    <a href="/login">
+        <button class="btn btn-primary">Login to Comment</button>
+    </a>
+</div>
+{{/if}}

@@ -107,10 +107,27 @@
   margin: 20px, auto;
 }
 
+#submit-button {
+  display: none;
+}
+
+#login-button {
+  display: flex;
+  justify-content: center;
+  margin: 20px, auto;
+}
+
 #new-post-text {
   height: 100px;
 }
 
 #comment-box {
-  display: none;
+  transition:height 1s ease-out;
+  height:0;
+  overflow:hidden;
+  position: relative;
+}
+
+#comment-box div {
+  position: absolute;
 }

@@ -1,5 +1,5 @@
 
-<div class="postcard">
+<div class="postcard" id="main-post" data-id="{{id}}">
     <div class="cardheader">
         <h2>{{title}}</h2>
         <p>{{user.username}} posted on {{createdAt}}</p>
@@ -10,7 +10,7 @@
 </div>
 
 {{#each blogComments}}
-<div class="postcard" data-id="{{this.id}}">
+<div class="postcard" data-id={{this.id}}>
     <div class="cardheader">
         <p>{{this.user.username}} commented on {{this.createdAt}}</p>
         {{#if sessionUser}}
@@ -28,16 +28,15 @@
 <div class="postcard" id="comment-box">
     <div class="cardbody form-group">
         <label for="comment-input">Your Comment:</label>
-        <input class="form-input" type="text" id="commnet-text" />
+        <input class="form-input" type="text" id="comment-text" />
     </div>
 </div>
 
 <div id="new-button">
-    <button class="btn btn-primary">+ Add Comment</button>
+    <button class="btn btn-primary" id="comment-button">+ Add Comment</button>
+    <button class="btn btn-Primary" id="submit-button">Submit Comment</button>
 </div>
-<div id="submit-button">
-    <button class="btn btn-Primary"></button>
-</div>
+
 {{else}}
 <div id="login-button">
     <a href="/login">

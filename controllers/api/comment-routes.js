@@ -32,7 +32,7 @@ router.put('/:id', withAuth, async (req, res) => {
 //localhost3001/api/comments/id
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        const postData = await Post.destroy({
+        const postData = await Comment.destroy({
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id

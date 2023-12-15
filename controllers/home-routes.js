@@ -62,7 +62,7 @@ router.get('/post/:id', async (req, res) => {
             blogComments,
             sessionUser,
             loggedIn: req.session.loggedIn
-        })
+        });
     } catch (err) {
         res.status(500).json(err)
     }
@@ -82,7 +82,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         res.render('dashboard', {
             userPosts, 
             loggedIn: true
-        })
+        });
     } catch (err) {
         res.status(500).json(err);
     }

@@ -38,16 +38,19 @@ User.init(
   },
   {
     hooks: {
-      async beforeBulkCreate(bulkUserData) {
-        bulkUserData.password = await bcrypt.hash(bulkUserData.password, 10);
-        return bulkUserData;
+      async beforeBulkCreate(users) {
+        for (const user of users) {
+          user.password = await bcrypt.hash(user.password, 10);
+        }
+        return users;
       },
       async beforeCreate(newUserData) {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
       async beforeUpdate(updatedUserData) {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        var newPass = updatedUserData.password;
+        updatedUserData.password = await bcrypt.hash(newPass, 10);
         return updatedUserData;
       },
     },

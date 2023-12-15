@@ -56,8 +56,25 @@ const delButtonHandler = async (event) => {
   event.stopPropagation();
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
-
+    console.log(id);
     const response = await fetch(`/api/posts/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      alert('Failed to delete project');
+    }
+  } console.log('no data')
+};
+
+const delCommentHandler = async (event) => {
+  event.stopPropagation();
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
+
+    const response = await fetch(`/api/comments/${id}`, {
       method: 'DELETE',
     });
 
@@ -77,7 +94,7 @@ document
 
 document.addEventListener('DOMContentLoaded', function () {
 document
-  .querySelector('.delete-button')
+  .querySelector('#delete-button')
   .addEventListener('click', delButtonHandler);
 });
 
@@ -95,6 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   document
-    .querySelector('.delete-button')
+    .querySelector('#delComment')
     .addEventListener('click', delCommentHandler);
   });

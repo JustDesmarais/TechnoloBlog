@@ -14,7 +14,7 @@
     <div class="cardheader">
         <p>{{this.user.username}} commented on {{this.createdAt}}</p>
         {{#if sessionUser}}
-        <span><button style="font-size:24px">Button <i class="fa fa-trash-o"></i></button></span>
+        <span><button style="font-size:24px">Button <i class="fa fa-trash-o" data-id={{this.id}} id="delComment"></i></button></span>
         {{/if}}
     </div>
     <div class="cardbody">

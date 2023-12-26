@@ -2,7 +2,7 @@
 <div class="postcard" id="main-post" data-id="{{id}}">
     <div class="cardheader">
         <h2>{{title}}</h2>
-        <p>{{user.username}} posted on {{createdAt}}</p>
+        <p>{{user.username}} posted on {{format_date createdAt}}</p>
     </div>
     <div class="cardbody">
         <p>{{content}}</p>
@@ -12,7 +12,7 @@
 {{#each blogComments}}
 <div class="postcard" data-id={{this.id}}>
     <div class="cardheader">
-        <p>{{this.user.username}} commented on {{this.createdAt}}</p>
+        <p>{{this.user.username}} commented on {{format_date this.createdAt}}</p>
         {{#if sessionUser}}
         <span><button style="font-size:24px">Button <i class="fa fa-trash-o" data-id={{this.id}} id="delComment"></i></button></span>
         {{/if}}

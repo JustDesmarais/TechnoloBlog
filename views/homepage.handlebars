@@ -4,7 +4,7 @@
     <a href="/post/{{this.id}}">
         <div class="cardheader">
             <h2>{{this.title}}</h2>
-            <p>{{this.user.username}} posted on {{this.createdAt}}</p>
+            <p>{{this.user.username}} posted on {{format_date this.createdAt}}</p>
         </div>
     </a>
     <div class="cardbody">

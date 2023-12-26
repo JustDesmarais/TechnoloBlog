@@ -6,12 +6,8 @@
             <a href="/post/{{this.id}}">
               <h2>{{this.title}}</h2>
             </a>
-            <p>Posted on {{this.createdAt}}<span><button style="font-size:20px margin:3px"><i class="fa fa-trash-o" id='delete-button' data-id={{this.id}}></i></button></span></p>
+            <p>Posted on {{this.createdAt}}<span><button class="btn btn-primary edit-button" data-id="{{this.id}}">Edit</button></button><button style="font-size:20px margin:3px"><i class="fa fa-trash-o delete-button" data-id={{this.id}}></i></button></span></p>
         </div>
-    
-    <div class="cardbody">
-        <p>{{this.content}}</p>
-    </div>
 </div>
 {{/each}}
 

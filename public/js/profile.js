@@ -7,7 +7,7 @@ const addCommentHandler = (event) => {
 };
 
 const submitCommentHandler = async (event) => {
-  event.preventDefault
+  event.preventDefault();
 
   const content = document.querySelector('#comment-text').value.trim();
   const post_id = document.querySelector('#main-post').getAttribute('data-id');
@@ -53,7 +53,7 @@ const newFormHandler = async (event) => {
 };
 
 const delButtonHandler = async (event) => {
-  event.stopPropagation();
+  event.preventDefault();
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
     console.log(id);
@@ -70,7 +70,7 @@ const delButtonHandler = async (event) => {
 };
 
 const delCommentHandler = async (event) => {
-  event.stopPropagation();
+  event.preventDefault();
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
@@ -86,6 +86,46 @@ const delCommentHandler = async (event) => {
   }
 };
 
+const editCommentHandler = async (event) => {
+  event.preventDefault();
+  const postID = event.target.getAttribute("data-id");
+  try{
+
+    if (postID) {
+        document.location.replace(`/edit/${postID}`);
+    } 
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const editCommentSubmit = async (event) => {
+  event.stopPropegation();
+  event.preventDefault();
+
+  const id = event.target.getAttribute('data-id');
+  const title = document.querySelector('#post-title').value.trim();
+  const content = document.querySelector('#edit-post-text').value.trim();
+
+  if (title && content) {
+    console.log(title, content);
+    const response = await fetch(`/api/posts/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ title, content }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      alert('Failed to create project');
+    }
+  }
+};
+
+
 document.addEventListener('DOMContentLoaded', function () {
 document
   .querySelector('.new-post-form')
@@ -93,9 +133,11 @@ document
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-document
-  .querySelector('#delete-button')
-  .addEventListener('click', delButtonHandler);
+  const delButtons = document.querySelectorAll('.delete-button');
+  
+  delButtons.forEach(function(db) {
+    db.addEventListener('click', delButtonHandler);
+  })
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -115,3 +157,17 @@ document.addEventListener('DOMContentLoaded', function () {
     .querySelector('#delComment')
     .addEventListener('click', delCommentHandler);
   });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const editButtons = document.querySelectorAll('.edit-button');
+  
+  editButtons.forEach(function(eb){
+    eb.addEventListener('click', editCommentHandler);
+  })
+});
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document
+      .querySelector('.edit-post-form')
+      .addEventListener('click', editCommentSubmit);
+    });

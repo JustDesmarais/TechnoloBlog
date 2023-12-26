@@ -88,13 +88,28 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
+router.get('/edit/:id', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id)
+
+        const post = postData.get({ plain: true });
+        res.render('edit', {
+            ...post,
+            loggedIn: true,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+        console.log(err)
+    }
+})
+
 router.get('/new-post', withAuth, (req, res) => res.render('new-post', {loggedIn: true}));
 router.get('/new-comment', withAuth, (req, res) => res.render('new-comment', {loggedIn: true}));
 
 // call to render the login page
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to the user's dashboard
-    if (req.session.loggeIn) {
+    if (req.session.loggedIn) {
       res.redirect('/dashboard');
       return;
     }
@@ -105,7 +120,7 @@ router.get('/login', (req, res) => {
 // call to render sign-up page
 router.get('/signup', (req, res) => {
     // If the user is already logged in, redirect the request to the user's dashboard
-    if (req.session.loggeIn) {
+    if (req.session.loggedIn) {
       res.redirect('/dashboard');
       return;
     }

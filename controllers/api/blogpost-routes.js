@@ -19,13 +19,18 @@ router.post('/', withAuth, async (req, res) => {
 //localhost3001/api/posts/post/id
 router.put('/:id', withAuth, async (req, res) => {
     try {
-        await Post.update(req.body, {
+        console.log(req.body);
+        await Post.update({
+            title: req.body.title,
+            content: req.body.content
+         }, {
             where: {id: req.params.id}
         });
 
         res.status(200).json('Post Updated');
     } catch (err) {
         res.status(500).json(err);
+        console.log(err);
     }
 });
 

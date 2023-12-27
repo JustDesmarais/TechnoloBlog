@@ -100,14 +100,15 @@ const editCommentHandler = async (event) => {
 }
 
 const editCommentSubmit = async (event) => {
+  event.stopPropagation();
   event.preventDefault();
 
-  const id = event.target.getAttribute('data-id');
+  const id = event.target.getAttribute("data-id");
   const title = document.querySelector('#post-title').value.trim();
   const content = document.querySelector('#edit-post-text').value.trim();
 
   if (title && content) {
-    console.log(title, content);
+    console.log(id, title, content);
     const response = await fetch(`/api/posts/${id}`, {
       method: 'PUT',
       body: JSON.stringify({ title, content }),
@@ -168,5 +169,5 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('DOMContentLoaded', function () {
     document
       .querySelector('.edit-post-form')
-      .addEventListener('click', editCommentSubmit);
+      .addEventListener('submit', editCommentSubmit);
     });

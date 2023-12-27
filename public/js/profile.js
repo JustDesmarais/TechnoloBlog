@@ -100,7 +100,6 @@ const editCommentHandler = async (event) => {
 }
 
 const editCommentSubmit = async (event) => {
-  event.stopPropegation();
   event.preventDefault();
 
   const id = event.target.getAttribute('data-id');
